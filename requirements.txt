@@ -1,0 +1,8 @@
+PySide6-Essentials>=6.8
+pyserial>=3.5
+shapely>=2.0
+segno>=1.6
+Pillow>=10
+numpy>=1.26
+Hershey-Fonts>=2.1
+PySide6-Addons>=6.8

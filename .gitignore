@@ -1,0 +1,13 @@
+# build output
+LaserForge.app/
+dist/
+build/
+__pycache__/
+*.pyc
+.DS_Store
+
+# local design work and notes (not part of the app)
+icon-design/
+icone-*.png
+interfaccia-nuova.png
+CONFRONTO_LIGHTBURN.md
