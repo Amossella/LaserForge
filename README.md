@@ -8,7 +8,7 @@ engravers and cutters** (GRBL, grblHAL, FluidNC, plus Marlin and Smoothieware), 
 support.
 
 From 0.5.0 LaserForge is written in **Rust** (egui). The earlier Python / Qt version is in the git
-history and in the [0.4.0-beta release](https://github.com/Amossella/LaserForge/releases/tag/v0.4.0-beta);
+history and under the [v0.4.0-beta tag](https://github.com/Amossella/LaserForge/tree/v0.4.0-beta);
 projects (`.lfproj`), the material library and the art library are shared with it.
 
 The interface is in Italian and English.
