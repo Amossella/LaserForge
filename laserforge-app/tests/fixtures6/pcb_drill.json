@@ -1,0 +1,1 @@
+{"kind": "pcb", "text": "M48\nMETRIC,LZ\nT1C0.8\nT2C1.2\n%\nT1\nX10.0Y10.0\nX20.0Y10.0\nT2\nX15.0Y20.0\nM30\n", "drill": true, "area": 2.1347581380718696, "rings": 3}

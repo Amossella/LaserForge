@@ -11,3 +11,12 @@ icon-design/
 icone-*.png
 interfaccia-nuova.png
 CONFRONTO_LIGHTBURN.md
+
+# Rust build output
+target/
+
+# knowledge graph of the code (local tool output)
+graphify-out/
+
+# release packaging output
+release/

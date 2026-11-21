@@ -1,0 +1,31 @@
+[package]
+name = "laserforge-app"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "LaserForge desktop app (egui): design, layers and GRBL laser control"
+
+[[bin]]
+name = "LaserForge"
+path = "src/main.rs"
+
+[dependencies]
+laserforge-core = { path = "../laserforge-core" }
+eframe = { version = "0.37", default-features = false, features = ["default_fonts", "glow", "persistence"] }
+egui = "0.37"
+serialport = { version = "4", default-features = false }
+rfd = "0.18"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "bmp", "gif", "webp", "tiff"] }
+regex = "1"
+quick-xml = "0.41"
+flate2 = "1"
+base64 = "0.23"
+ttf-parser = "0.25"
+qrcode = { version = "0.14", default-features = false }
+zip = { version = "2", default-features = false, features = ["deflate"] }
+nokhwa = { version = "0.10", features = ["input-native"] }
+
+[target.'cfg(target_os = "macos")'.dependencies]
+muda = { version = "0.17", default-features = false }

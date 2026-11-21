@@ -1,0 +1,147 @@
+{
+ "kind": "job",
+ "job": {
+  "machine": {
+   "max_speed": 6000.0,
+   "max_power": 1000,
+   "workspace_x": 400.0,
+   "workspace_y": 400.0,
+   "home_on_start": true,
+   "return_to_origin": true,
+   "baud_rate": 115200,
+   "air_assist_default": "on",
+   "use_g0_overscan": false,
+   "frame_power": 1.0,
+   "rotary_enabled": false,
+   "rotary_type": "roller",
+   "rotary_mm_per_rev": 100.0,
+   "rotary_diameter": 50.0,
+   "start_gcode": "",
+   "end_gcode": "",
+   "flavor": "grbl",
+   "origin": "fl",
+   "air_command": "M8",
+   "marlin_air_fan": false,
+   "transfer_mode": "buffered",
+   "acceleration": 1000.0,
+   "backlash_x": 0.0,
+   "backlash_y": 0.0,
+   "finish_position": "origin",
+   "finish_x": 0.0,
+   "finish_y": 0.0,
+   "fire_power": 1.0,
+   "fire_enabled": false,
+   "z_enabled": false,
+   "z_speed": 5.0,
+   "z_relative_only": false,
+   "rotary_axis": "Y",
+   "raster_relative": true,
+   "fast_whitespace": false,
+   "whitespace_speed": 6000.0,
+   "scan_offset_enabled": false,
+   "scan_offsets": "",
+   "feeder_enabled": false,
+   "feeder_axis": "A",
+   "feeder_distance": 100.0,
+   "feeder_repeats": 1,
+   "feeder_speed": 1000.0,
+   "feeder_gcode": ""
+  },
+  "layers": [
+   {
+    "settings": {
+     "name": "C00",
+     "color": "#000000",
+     "speed": 1000.0,
+     "power_min": 0.0,
+     "power_max": 100.0,
+     "passes": 1,
+     "cut_mode": "line",
+     "air_assist": "on",
+     "air_power": 100.0,
+     "air_cut_only": false,
+     "z_offset": 0.0,
+     "laser_mode": "M4",
+     "enabled": true,
+     "line_interval": 0.1,
+     "overscan": 2.5,
+     "overscan_percent": false,
+     "scan_angle": 0.0,
+     "cross_hatch": false,
+     "bidir_scan": true,
+     "dwell_time": 0.0,
+     "start_delay": 0.0,
+     "end_delay": 0.0,
+     "ramp_length": 0.0,
+     "tab_count": 0,
+     "tab_width": 2.0,
+     "kerf_offset": 0.0,
+     "power_scale": 100.0,
+     "dot_mode": false,
+     "dot_time": 1.0,
+     "z_step": 0.0,
+     "tool": false,
+     "lead_in": 0.0,
+     "lead_out": 0.0,
+     "overcut": 0.0,
+     "perforate": false,
+     "perf_cut": 1.0,
+     "perf_skip": 1.0,
+     "flood_fill": false,
+     "sublayers": [
+      {
+       "enabled": true,
+       "name": "taglio",
+       "speed": 300,
+       "power_max": 90,
+       "passes": 2
+      },
+      {
+       "enabled": false,
+       "name": "x"
+      },
+      {
+       "enabled": true,
+       "cut_mode": "fill",
+       "line_interval": 2
+      }
+     ],
+     "pass_through": false,
+     "dot_width": 0.0,
+     "bottom_up": false
+    },
+    "paths": [
+     [
+      [
+       20,
+       20
+      ],
+      [
+       60,
+       20
+      ],
+      [
+       60,
+       50
+      ],
+      [
+       20,
+       50
+      ],
+      [
+       20,
+       20
+      ]
+     ]
+    ],
+    "tabs": []
+   }
+  ],
+  "rasters": [],
+  "origin_mode": null,
+  "start": null
+ },
+ "gcode": "; === LaserForge Job ===\n; Layers: 3  Images: 0\n\nG00 G17 G40 G21 G54\nG90\n; ======== C00 ========\n; Layer: C00\n; Speed: 1000.0 mm/min | Power: 0.0-100.0%\n; Air Assist: on | Passes: 1\n; Mode: line | Laser: M4\nG21 ; mm\nG90 ; absolute\nM4 S0\nM8 ; Air assist ON\nG0 X20.000 Y20.000\nG1 X60.000 Y20.000 F1000 S1000\nG1 X60.000 Y50.000 F1000 S1000\nG1 X20.000 Y50.000 F1000 S1000\nG1 X20.000 Y20.000 F1000 S1000\nS0\n\n; ======== taglio ========\n; Layer: taglio\n; Speed: 300.0 mm/min | Power: 0.0-90.0%\n; Air Assist: on | Passes: 2\n; Mode: line | Laser: M4\nG21 ; mm\nG90 ; absolute\nM4 S0\n; Pass 1/2\nG0 X20.000 Y20.000\nG1 X60.000 Y20.000 F300 S900\nG1 X60.000 Y50.000 F300 S900\nG1 X20.000 Y50.000 F300 S900\nG1 X20.000 Y20.000 F300 S900\n; Pass 2/2\nG0 X20.000 Y20.000\nG1 X60.000 Y20.000 F300 S900\nG1 X60.000 Y50.000 F300 S900\nG1 X20.000 Y50.000 F300 S900\nG1 X20.000 Y20.000 F300 S900\nS0\n\n; ======== C00.3 ========\n; Layer: C00.3\n; Speed: 1000.0 mm/min | Power: 0.0-100.0%\n; Air Assist: on | Passes: 1\n; Mode: fill | Laser: M4\n; Interval: 2.0mm | Angle: 0.0 | Overscan: 2.5mm\nG21 ; mm\nG90 ; absolute\nM4 S0\n; Fill 15 lines @ 0 deg\nG0 X17.500 Y21.000\nG1 X20.000 Y21.000 F1000 S0\nG1 X60.000 Y21.000 F1000 S1000\nG1 X62.500 Y21.000 F1000 S0\nG0 X62.500 Y23.000\nG1 X60.000 Y23.000 F1000 S0\nG1 X20.000 Y23.000 F1000 S1000\nG1 X17.500 Y23.000 F1000 S0\nG0 X17.500 Y25.000\nG1 X20.000 Y25.000 F1000 S0\nG1 X60.000 Y25.000 F1000 S1000\nG1 X62.500 Y25.000 F1000 S0\nG0 X62.500 Y27.000\nG1 X60.000 Y27.000 F1000 S0\nG1 X20.000 Y27.000 F1000 S1000\nG1 X17.500 Y27.000 F1000 S0\nG0 X17.500 Y29.000\nG1 X20.000 Y29.000 F1000 S0\nG1 X60.000 Y29.000 F1000 S1000\nG1 X62.500 Y29.000 F1000 S0\nG0 X62.500 Y31.000\nG1 X60.000 Y31.000 F1000 S0\nG1 X20.000 Y31.000 F1000 S1000\nG1 X17.500 Y31.000 F1000 S0\nG0 X17.500 Y33.000\nG1 X20.000 Y33.000 F1000 S0\nG1 X60.000 Y33.000 F1000 S1000\nG1 X62.500 Y33.000 F1000 S0\nG0 X62.500 Y35.000\nG1 X60.000 Y35.000 F1000 S0\nG1 X20.000 Y35.000 F1000 S1000\nG1 X17.500 Y35.000 F1000 S0\nG0 X17.500 Y37.000\nG1 X20.000 Y37.000 F1000 S0\nG1 X60.000 Y37.000 F1000 S1000\nG1 X62.500 Y37.000 F1000 S0\nG0 X62.500 Y39.000\nG1 X60.000 Y39.000 F1000 S0\nG1 X20.000 Y39.000 F1000 S1000\nG1 X17.500 Y39.000 F1000 S0\nG0 X17.500 Y41.000\nG1 X20.000 Y41.000 F1000 S0\nG1 X60.000 Y41.000 F1000 S1000\nG1 X62.500 Y41.000 F1000 S0\nG0 X62.500 Y43.000\nG1 X60.000 Y43.000 F1000 S0\nG1 X20.000 Y43.000 F1000 S1000\nG1 X17.500 Y43.000 F1000 S0\nG0 X17.500 Y45.000\nG1 X20.000 Y45.000 F1000 S0\nG1 X60.000 Y45.000 F1000 S1000\nG1 X62.500 Y45.000 F1000 S0\nG0 X62.500 Y47.000\nG1 X60.000 Y47.000 F1000 S0\nG1 X20.000 Y47.000 F1000 S1000\nG1 X17.500 Y47.000 F1000 S0\nG0 X17.500 Y49.000\nG1 X20.000 Y49.000 F1000 S0\nG1 X60.000 Y49.000 F1000 S1000\nG1 X62.500 Y49.000 F1000 S0\nS0\n\n; --- job end ---\nM5 ; laser off\nM9 ; air assist off\nG0 X0 Y0 ; return to origin\n; === Job Complete ===\nM2",
+ "send": "; === LaserForge Job ===\n; Layers: 3  Images: 0\n\nG00 G17 G40 G21 G54\nG90\n; ======== C00 ========\n; Layer: C00\n; Speed: 1000.0 mm/min | Power: 0.0-100.0%\n; Air Assist: on | Passes: 1\n; Mode: line | Laser: M4\nG21 ; mm\nG90 ; absolute\nM4 S0\nM8 ; Air assist ON\nG0 X20.000 Y20.000\nG1 X60.000 Y20.000 F1000 S1000\nG1 X60.000 Y50.000 F1000 S1000\nG1 X20.000 Y50.000 F1000 S1000\nG1 X20.000 Y20.000 F1000 S1000\nS0\n\n; ======== taglio ========\n; Layer: taglio\n; Speed: 300.0 mm/min | Power: 0.0-90.0%\n; Air Assist: on | Passes: 2\n; Mode: line | Laser: M4\nG21 ; mm\nG90 ; absolute\nM4 S0\n; Pass 1/2\nG0 X20.000 Y20.000\nG1 X60.000 Y20.000 F300 S900\nG1 X60.000 Y50.000 F300 S900\nG1 X20.000 Y50.000 F300 S900\nG1 X20.000 Y20.000 F300 S900\n; Pass 2/2\nG0 X20.000 Y20.000\nG1 X60.000 Y20.000 F300 S900\nG1 X60.000 Y50.000 F300 S900\nG1 X20.000 Y50.000 F300 S900\nG1 X20.000 Y20.000 F300 S900\nS0\n\n; ======== C00.3 ========\n; Layer: C00.3\n; Speed: 1000.0 mm/min | Power: 0.0-100.0%\n; Air Assist: on | Passes: 1\n; Mode: fill | Laser: M4\n; Interval: 2.0mm | Angle: 0.0 | Overscan: 2.5mm\nG21 ; mm\nG90 ; absolute\nM4 S0\n; Fill 15 lines @ 0 deg\nG0 X17.500 Y21.000\nG1 X20.000 Y21.000 F1000 S0\nG1 X60.000 Y21.000 F1000 S1000\nG1 X62.500 Y21.000 F1000 S0\nG0 X62.500 Y23.000\nG1 X60.000 Y23.000 F1000 S0\nG1 X20.000 Y23.000 F1000 S1000\nG1 X17.500 Y23.000 F1000 S0\nG0 X17.500 Y25.000\nG1 X20.000 Y25.000 F1000 S0\nG1 X60.000 Y25.000 F1000 S1000\nG1 X62.500 Y25.000 F1000 S0\nG0 X62.500 Y27.000\nG1 X60.000 Y27.000 F1000 S0\nG1 X20.000 Y27.000 F1000 S1000\nG1 X17.500 Y27.000 F1000 S0\nG0 X17.500 Y29.000\nG1 X20.000 Y29.000 F1000 S0\nG1 X60.000 Y29.000 F1000 S1000\nG1 X62.500 Y29.000 F1000 S0\nG0 X62.500 Y31.000\nG1 X60.000 Y31.000 F1000 S0\nG1 X20.000 Y31.000 F1000 S1000\nG1 X17.500 Y31.000 F1000 S0\nG0 X17.500 Y33.000\nG1 X20.000 Y33.000 F1000 S0\nG1 X60.000 Y33.000 F1000 S1000\nG1 X62.500 Y33.000 F1000 S0\nG0 X62.500 Y35.000\nG1 X60.000 Y35.000 F1000 S0\nG1 X20.000 Y35.000 F1000 S1000\nG1 X17.500 Y35.000 F1000 S0\nG0 X17.500 Y37.000\nG1 X20.000 Y37.000 F1000 S0\nG1 X60.000 Y37.000 F1000 S1000\nG1 X62.500 Y37.000 F1000 S0\nG0 X62.500 Y39.000\nG1 X60.000 Y39.000 F1000 S0\nG1 X20.000 Y39.000 F1000 S1000\nG1 X17.500 Y39.000 F1000 S0\nG0 X17.500 Y41.000\nG1 X20.000 Y41.000 F1000 S0\nG1 X60.000 Y41.000 F1000 S1000\nG1 X62.500 Y41.000 F1000 S0\nG0 X62.500 Y43.000\nG1 X60.000 Y43.000 F1000 S0\nG1 X20.000 Y43.000 F1000 S1000\nG1 X17.500 Y43.000 F1000 S0\nG0 X17.500 Y45.000\nG1 X20.000 Y45.000 F1000 S0\nG1 X60.000 Y45.000 F1000 S1000\nG1 X62.500 Y45.000 F1000 S0\nG0 X62.500 Y47.000\nG1 X60.000 Y47.000 F1000 S0\nG1 X20.000 Y47.000 F1000 S1000\nG1 X17.500 Y47.000 F1000 S0\nG0 X17.500 Y49.000\nG1 X20.000 Y49.000 F1000 S0\nG1 X60.000 Y49.000 F1000 S1000\nG1 X62.500 Y49.000 F1000 S0\nS0\n\n; --- job end ---\nM5 ; laser off\nM9 ; air assist off\nG0 X0 Y0 ; return to origin\n; === Job Complete ===\nM2",
+ "seconds": 107.87543350306804
+}

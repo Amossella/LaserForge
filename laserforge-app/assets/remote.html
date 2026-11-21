@@ -1,0 +1,30 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>LaserForge</title>
+<style>
+body{font-family:-apple-system,Helvetica,sans-serif;background:#1f2023;color:#e6e6e6;margin:0;padding:16px}
+h1{font-size:20px;margin:0 0 12px} .st{background:#2b2c30;border-radius:10px;padding:12px;margin-bottom:12px;font-size:15px}
+.g{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+button{font-size:17px;padding:14px 6px;border:0;border-radius:10px;background:#3a3c42;color:#fff}
+.go{background:#2f7bf5}.warn{background:#a7841f}.stop{background:#c62828}.air{background:#1b8a9b}
+input{font-size:18px;padding:10px;border-radius:8px;border:1px solid #555;background:#111;color:#fff;width:140px}
+</style></head><body><h1>LaserForge</h1>
+<div id="login"><p>PIN</p><input id="pin" inputmode="numeric"> <button onclick="savePin()">OK</button></div>
+<div id="ui" style="display:none">
+<div class="st" id="st">…</div>
+<div class="g"><button class="go" onclick="act('start')">▶ Avvia</button><button class="warn" onclick="act('pause')">❚❚ Pausa</button><button onclick="act('resume')">⏵ Riprendi</button>
+<button class="stop" onclick="act('stop')">■ STOP</button><button onclick="act('frame')">⬚ Frame</button><button onclick="act('home')">⌂ Home</button></div>
+<div class="g"><span></span><button onclick="jog(0,-1)">▲</button><span></span>
+<button onclick="jog(-1,0)">◀</button><select id="step" style="font-size:17px;border-radius:10px"><option>0.1</option><option selected>1</option><option>10</option><option>50</option></select><button onclick="jog(1,0)">▶</button>
+<span></span><button onclick="jog(0,1)">▼</button><span></span></div>
+<div class="g"><button class="air" onclick="act('air_on')">Aria ON</button><span></span><button onclick="act('air_off')">Aria OFF</button></div>
+</div>
+<script>
+let pin=localStorage.getItem('lfpin')||'';
+function savePin(){pin=document.getElementById('pin').value;localStorage.setItem('lfpin',pin);poll();}
+async function call(path,method){const r=await fetch(path,{method:method||'GET',headers:{'X-PIN':pin}});if(r.status==403){document.getElementById('login').style.display='';document.getElementById('ui').style.display='none';throw 0;}return r.json();}
+async function act(a){try{const r=await call('/api/'+a,'POST');if(r.message)alert(r.message);}catch(e){}}
+async function jog(x,y){const s=parseFloat(document.getElementById('step').value);try{await call('/api/jog?x='+x*s+'&y='+y*s,'POST');}catch(e){}}
+async function poll(){try{const s=await call('/api/status');document.getElementById('login').style.display='none';document.getElementById('ui').style.display='';
+document.getElementById('st').innerHTML='Stato: <b>'+s.state+'</b><br>X '+s.x.toFixed(2)+'  Y '+s.y.toFixed(2)+(s.total?'<br>Avanzamento: '+s.sent+'/'+s.total:'');}catch(e){}}
+if(pin)poll();setInterval(()=>{if(pin)poll()},1000);
+</script></body></html>

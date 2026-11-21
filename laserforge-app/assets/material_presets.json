@@ -1,0 +1,86 @@
+{
+"Compensato 3mm": {
+"speed": 300,
+"power_max": 100,
+"passes": 1,
+"air_assist": "on",
+"cut_mode": "line"
+},
+"Compensato 5mm": {
+"speed": 200,
+"power_max": 100,
+"passes": 2,
+"air_assist": "on",
+"cut_mode": "line"
+},
+"Acrilico 3mm": {
+"speed": 400,
+"power_max": 95,
+"passes": 1,
+"air_assist": "on",
+"cut_mode": "line"
+},
+"Acrilico 5mm": {
+"speed": 250,
+"power_max": 100,
+"passes": 2,
+"air_assist": "on",
+"cut_mode": "line"
+},
+"Pelle": {
+"speed": 500,
+"power_max": 60,
+"passes": 1,
+"air_assist": "on",
+"cut_mode": "line"
+},
+"Cartone": {
+"speed": 800,
+"power_max": 40,
+"passes": 1,
+"air_assist": "on",
+"cut_mode": "line"
+},
+"Tessuto": {
+"speed": 600,
+"power_max": 30,
+"passes": 1,
+"air_assist": "off",
+"cut_mode": "line"
+},
+"Incisione legno": {
+"speed": 3000,
+"power_max": 50,
+"passes": 1,
+"air_assist": "on",
+"cut_mode": "fill"
+},
+"Incisione vetro": {
+"speed": 2000,
+"power_max": 80,
+"passes": 1,
+"air_assist": "off",
+"cut_mode": "fill"
+},
+"Taglio carta": {
+"speed": 1200,
+"power_max": 20,
+"passes": 1,
+"air_assist": "off",
+"cut_mode": "line"
+},
+"MDF 3mm": {
+"speed": 350,
+"power_max": 100,
+"passes": 1,
+"air_assist": "on",
+"cut_mode": "line"
+},
+"MDF 6mm": {
+"speed": 200,
+"power_max": 100,
+"passes": 3,
+"air_assist": "on",
+"cut_mode": "line"
+}
+}
